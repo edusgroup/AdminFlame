@@ -1,0 +1,11 @@
+.jquery-selectbox { position: relative; z-index: 0; float: left; display: inline; border-right:none; height:24px; width:100px; padding:4px 2px 4px 5px; margin:5px; -moz-border-radius:8px; -webkit-border-radius:8px; border-radius: 8px; }
+.jquery-selectbox.selecthover { border-color: #e8e8e8; background-color: #fff; z-index: 700; }	
+.jquery-selectbox .jquery-selectbox-currentItem { padding: 2px 0px 2px 3px; white-space: nowrap; display: block; overflow: hidden; }
+.jquery-selectbox .jquery-selectbox-list { display: none; position: absolute; top: 26px; padding: 6px 2px; left: 0px; background: #fff; width: 100px; height: 200px; overflow-x: hidden; overflow-y: auto; z-index: 1000; border: 1px solid #e8e8e8; }
+.jquery-selectbox .jquery-selectbox-moreButton { position: absolute; top: -1px; right: -20px; float: right; background: url("../images/select_more_btn.png"); width: 44px; height: 34px; cursor: pointer; }
+.jquery-selectbox .jquery-selectbox-moreButton.morebuttonhover { background: url("../images/select_more_btn-hover.png"); }
+.jquery-selectbox .jquery-selectbox-item.listelementhover { background-color:#CCC; color:#FFF; }
+.jquery-selectbox .jquery-selectbox-item { display: block; cursor: default; }
+
+/** ERROR classes **/
+form .error .jquery-selectbox { color: #d00; border-color: #d00; background-image: url("../images/bg-TextFieldError.gif"); }
