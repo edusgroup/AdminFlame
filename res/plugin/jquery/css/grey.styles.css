@@ -1,0 +1,55 @@
+/* ============================================= 
+* Filename : gray.styles.css
+* Template : Admin Panelz
+* Author : Stefan Carcu
+* Date created : 20.07.2010
+* Media : Screen
+ ============================================= */
+ 
+ h1, h2, h3, h4, h5, h6 { color:#636363; }
+ h6 { text-shadow: 1px 1px 0 #fff; }
+ 
+ /* ============================================= panel ============================================= */
+.panel { border:1px solid #dddddd; }
+.title { background:url(../images/panel_bg.gif) repeat-x; }
+
+.img_list li { border:1px solid #e8e8e8; }
+
+/* ============================================= content heading ============================================= */
+.panel h1, h2, h3, h4, h5, h6 { color:#333; }
+
+/* ============================================= buttons ============================================= */
+.button { color:#636363; text-shadow: 1px 1px 0 #fff; }
+.btn_small { background:url(../images/button_small.png) no-repeat; }
+.btn_small:hover { background:url(../images/button_small.png) 0 -34px; }
+.btn_medium { background:url(../images/button_medium.png) no-repeat; }
+.btn_medium:hover { background:url(../images/button_medium.png) 0 -34px; }
+.btn_large { background:url(../images/button_large.png) no-repeat; }
+.btn_large:hover { background:url(../images/button_large.png) 0 -34px; }
+
+/* ============================================= inputs ============================================= */
+.small_input { border:1px solid #e2e2e2; }
+.medium_input { border:1px solid #e2e2e2; }
+.large_input { border:1px solid #e2e2e2; }
+.text { border:1px solid #e2e2e2; }
+
+/* ============================================= pagination ============================================= */
+.pagination a, .pagination a:visited { border:1px solid #e8e8e8; }
+.pagination a:hover { background-color:#e8e8e8; }
+.pagination .active { background-color:#dddddd; border:1px solid #e8e8e8; }
+
+/* ============================================= table tr hover ============================================= */
+table.tablesorter thead tr th, table.tablesorter tfoot tr th { background-color:#e8e8e8; padding: 4px; }
+table.tablesorter tbody td { border-bottom: 1px solid #e8e8e8; }
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp { background-color: #dddddd; } 
+table.tablesorter tr:hover, table.tablesorter tr:hover td { background-color: #f6f6f6; }
+
+/* ============================================= table tr hover ============================================= */
+.jquery-selectbox { border:1px solid #e2e2e2; }
+
+/* ============================================= file input ============================================= */
+.file_input_textbox { border:1px solid #e8e8e8; }
+
+/* ============================================= wysiwyg form ============================================= */
+div.wysiwyg { border: 1px solid #e8e8e8; background-color: #ffffff; }
+div.wysiwyg ul.panel { background-color:#f6f6f6; }

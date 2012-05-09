@@ -1,0 +1,21 @@
+/*demo styles*/
+table.chart { width:86%; height: 200px; }
+table.accessHide { position: absolute; left: -999999px; }
+table.chart td, table.chart th { padding: 2px; width: 13%; }
+table.chart th { background-color:#f4f4f4; } 
+table.chart caption { }
+.nodisplay { display:none; }
+
+/*visualize extension styles*/
+.visualize { margin: 0; padding: 10px 40px 30px; }
+.visualize canvas { margin: -1px; }
+.visualize-labels-x, .visualize-labels-y { top: 10px; left: 40px; z-index: 100; }
+.visualize-pie .visualize-labels { position: absolute; top: 10px; left: 40px; }
+.visualize-labels-x li span.label, .visualize-labels-y li span.label { color: #444; padding-right: 5px; }
+.visualize-labels-y li span.line { border-style: solid;  opacity: .7; }
+.visualize .visualize-info { border: 0; position: static;  opacity: 1; background: none; }
+.visualize .visualize-title { position: absolute; top:0; color: #333; margin-bottom: 0; left: 20px; font-weight: bold; }
+.visualize ul.visualize-key { position: absolute; top:0; left: 50px; border:1px solid #e8e8e8; background-color:#FFF; z-index: 10; padding: 2px 0; color: #aaa; width: 320px; font-size:10px; }
+.visualize ul.visualize-key li { font-size: 1.2em;  margin-left: 20px; padding-left: 18px; }
+.visualize ul.visualize-key .visualize-key-color { width: 10px; height: 10px;  margin-top: -4px; }
+.visualize ul.visualize-key .visualize-key-label { color: #333; }

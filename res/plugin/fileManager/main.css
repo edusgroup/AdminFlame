@@ -1,0 +1,72 @@
+div.item{
+    /*width: 128px;*/
+    /*height: 176px;*/
+    margin-bottom: 10px;
+    margin-right: 10px;
+    float: left;
+    background: #a3a3a3;
+    border: 3px solid #a3a3a3;
+    display: block;
+}
+
+div.item .preloader{
+    background: white url(/res/plugin/fileManager/img/loader/preloader.gif) no-repeat center center;
+}
+
+div.item .file{
+    width: 128px;
+    height: 128px;
+    background:  no-repeat center center;
+}
+div.item .panel{
+    width: 128px;
+    text-align: left;
+    height: 20px;
+    color: #FFFFFF;
+}
+/*
+div.item .panel .button{
+    width: 20px;
+    height: 20px;
+    background: #a3a3a3;
+    float: right;
+    text-align: center;
+}*/
+
+div.item .name{
+    width: 128px;
+    height: 20px;
+    color: #FFFFFF;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -moz-binding: url('/examples/text-overflow.xml#ellipsis');
+}
+
+div.item .name label{
+text-align: left;
+}
+
+div.item .file .action{
+    display: none;
+}
+
+div:hover.item .file .action{
+    width: 100%;
+    height: 89px;
+    background: url(/res/plugin/fileManager/img/black50.png) no-repeat 0 0; 
+    text-align: center;
+    padding-top: 39px;
+    display: block;
+}
+
+
+div.item .panel .button img{
+    cursor: pointer
+}
+
+div.item .file .action img{
+    cursor: pointer;
+}

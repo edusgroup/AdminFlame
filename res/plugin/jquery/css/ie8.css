@@ -1,0 +1,21 @@
+.file_input_textbox {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; HEIGHT: 22px; PADDING-TOP: 10px
+}
+.ui-datepicker-trigger {
+	TOP: 16px
+}
+.hidden_right_div .ui-state-disabled {
+	FILTER: alpha(opacity = 100); BACKGROUND: #000
+}
+#top_menu {
+	Z-INDEX: auto
+}
+#top_menu_content {
+	Z-INDEX: 1200; POSITION: relative
+}
+#top_menu_button {
+	Z-INDEX: 1100; POSITION: relative
+}
+#top_menu_content LI UL.subnav {
+	Z-INDEX: 1300
+}

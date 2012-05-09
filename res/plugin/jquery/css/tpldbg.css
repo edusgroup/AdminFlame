@@ -1,0 +1,21 @@
+.ct_tools{background-color: dimgray; 
+          width: 100%; height: 18px; 
+          border: 1px silver solid; 
+          text-align: center; 
+          color: white;
+          }
+.ct_tools img{cursor: pointer}
+#compTree{width: 200px; height: 100%;}
+#compList td{padding-left: 5px}
+#btPanel{ 
+    left:50px; 
+    top: -10000px; 
+    width: 200px; 
+    height: 40px; 
+    background-color:black; 
+    border: 1px solid red;
+    position: fixed;
+    z-index:100;
+    padding: 5px 5px 5px 5px
+}
+.imgButton{ cursor: pointer; margin-left: 5px}
