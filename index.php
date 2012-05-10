@@ -1,5 +1,4 @@
 <?php
-
 // Conf
 use \SITE as CONF;
 use \DIR as DIR;
@@ -15,8 +14,9 @@ define('DIR_CONF', './../FlameCore/engine/admin/');
 include(DIR_CONF . 'conf/DIR.php');
 include(DIR_CONF . 'conf/SITE.php');
 include(DIR_CONF . 'conf/CONSTANT.php');
+umask(0002);
 
-$siteName = 'SeoForBeginners.lo';
+$siteName = 'seoforbeginners.ru';
 
 include DIR::SITE_CORE.$siteName.'/conf/SITE.php';
 include DIR::SITE_CORE.$siteName.'/conf/DIR.php';
