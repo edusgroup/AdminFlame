@@ -10,30 +10,46 @@ use core\classes\DB\DB as DBCore;
 // Грузим конфиги админки
 define('DIR_CONF', './../FlameCore/engine/admin/');
 
-
 include(DIR_CONF . 'conf/DIR.php');
 include(DIR_CONF . 'conf/SITE.php');
 include(DIR_CONF . 'conf/CONSTANT.php');
+
+define('SITE_CORE', './../SiteCoreFlame/');
+
+// Получаем типо контроллера
+$initType = isset($_GET['$t']) ? trim($_GET['$t']) : '';
+$contrName = isset($_GET['$c']) ? trim($_GET['$c']) : '';
+
+$siteName = isset($_COOKIE['siteName']) ? $_COOKIE['siteName'] : null;
+if ( !$siteName ){
+    $siteName = isset($_GET['siteName']) ? trim($_GET['siteName']) : null;
+}
+$isDirNotExist = !$siteName || !is_dir(SITE_CORE.$siteName);
+$isContr = !(in_array($contrName, ['site','auth']) && ($initType == 'manager'));
+if ($isDirNotExist && $isContr){
+    header('Location: /?$t=manager&$c=site');
+    exit;
+} // if
+
 umask(0002);
 
-$siteName = 'seoforbeginners.ru';
-
-include DIR::SITE_CORE.$siteName.'/conf/SITE.php';
-include DIR::SITE_CORE.$siteName.'/conf/DIR.php';
-include DIR::SITE_CORE.$siteName.'/conf/DB.php';
+if ( $siteName ){
+    include SITE_CORE.$siteName.'/conf/SITE.php';
+    include SITE_CORE.$siteName.'/conf/DIR.php';
+    include SITE_CORE.$siteName.'/conf/DB.php';
+} // if ( $siteName )
 
 session_start();
-
 include DIR::CORE . 'admin/library/function/autoload.php';
 // Костыль для проверки скалярных типо данных в параметрах функции. В PHP 5.4 пофиксят
 include DIR::CORE . 'core/function/errorHandler.php';
 // Подгрузка драйвера БД
 include DIR::CORE . 'core/classes/DB/adapter/' . CONF::DB_ADAPTER . '/adapter.php';
 
-DBCore::addParam('site', \site\conf\DB::$conf);
+if ( $siteName ){
+    DBCore::addParam('site', \site\conf\DB::$conf);
+}
 
-// Получаем типо контроллера
-$initType = trim(request::get('$t'));
 // Формируем имя класса для типа контроллера
 $initClassName = 'admin\library\init\\' . $initType;
 // Существует ли наш типо контроллера, автоматическая автоподрузка
@@ -41,13 +57,13 @@ if (!class_exists($initClassName)) {
     header('Content-Type: text/html; charset=UTF-8');
     echo "Page 404<br/>\nBad parametr initType";
     exit;
-}
+} // if
 
 // Могут быть исключительные ситуации
 try {
     // Создаём и запускаем
     $initObj = new $initClassName();
-    $initObj->run();
+    $initObj->run($siteName);
 } catch (\Exception $e) {
     /*header('Content-Type: text/html; charset=UTF-8');
     $errorMsg = htmlspecialchars($e->getMessage());

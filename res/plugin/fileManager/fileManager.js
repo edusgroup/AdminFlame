@@ -14,17 +14,7 @@ var fileManager = {
     $item: null,
     itemSelectList:{}
 }; 
-   
-   /*
-fileManager.initCkEditor = function(pUrlParam){
-    CKEDITOR.config.filebrowserBrowseUrl = utils.url('fileManager/ckedit', 'type=file'+pUrlParam);
-    CKEDITOR.config.filebrowserImageBrowseUrl = utils.url('fileManager/ckedit', 'type=img'+pUrlParam);
-    CKEDITOR.config.filebrowserFlashBrowseUrl = '/?cmd=fileManager&a1=ckedit&type=flash'+pUrlParam;
-    CKEDITOR.config.filebrowserUploadUrl = 'res/plugin/kcfinder/upload.php?type=files';
-    CKEDITOR.config.filebrowserImageUploadUrl = 'res/plugin/kcfinder/upload.php?type=images';
-    CKEDITOR.config.filebrowserFlashUploadUrl = 'res/plugin/kcfinder/upload.php?type=flash';
-}*/
-            
+
 fileManager._convertButton = function(pName, pImgPath){
     var text = this.button[pName];
     return '<IMG'
@@ -35,8 +25,6 @@ fileManager._convertButton = function(pName, pImgPath){
     return '';
 };
 
-
-            
 fileManager.select = function(){
     var $item = $(this).parents('div.item:first');
     var title = $item.attr('name');
@@ -108,6 +96,13 @@ fileManager.view = function(){
     };
     
     $('.item input.check').live('click', fileManager.checkClick);
+
+    $.fn.addFileBoxBegin = function(itemName, itemId, pConf){
+        return '<div class="item" id="'+itemId+'" imgsize="'+pConf.imgsize+'" filesize="'+pConf.filesize+'">'
+            +'<div class="name"><label><input type="checkbox" class="check"/> '+itemName+'</label></div>'
+            +'<div class="preloader"><div class="file">'
+            +'<div class="action">';
+    }
     
     $.fn.addFile = function(pConf){
         
@@ -115,13 +110,9 @@ fileManager.view = function(){
         var itemId = pConf.id ? pConf.id : '';
         var itemUrlPreview = pConf.preview ? pConf.preview : '';
 
-        var item = '<div class="item" id="'+itemId+'" imgsize="'+pConf.imgsize+'" filesize="'+pConf.filesize+'">'
-        +'<div class="name"><label><input type="checkbox" class="check"/> '+itemName+'</label></div>'
-        +'<div class="preloader"><div class="file">'
-        +'<div class="action">';
+        var item = $.fn.addFileBoxBegin(itemName, itemId, pConf);
 
-        var buttonName;
-        for (buttonName in pConf.button ){
+        for (var buttonName in pConf.button ){
             item += fileManager._convertButton(buttonName, options.imgPath);
         }
         var param = '' + pConf.filesize;
@@ -129,7 +120,7 @@ fileManager.view = function(){
         this.append(item);
              
         var $item = this.find('#'+itemId);
-        for (buttonName in pConf.button ){
+        for (var buttonName in pConf.button ){
             var func = fileManager[buttonName];
             if ( typeof pConf.button[buttonName] == 'function' ){
                 func = pConf.button[buttonName];
