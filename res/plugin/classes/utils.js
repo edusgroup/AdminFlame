@@ -496,6 +496,7 @@ var dhtmlxInit = new function(){
         for( var treeName in pInitData ){
             var initData = pInitData[treeName];
 
+
             if ( !initData.tree.id ){
                 //alert('ID дерева не задан');
                 continue;
@@ -504,7 +505,7 @@ var dhtmlxInit = new function(){
             if ( initData.init ){
                 initData.init(tree);
             }
-            
+
             if ( initData.checkbox ){
                 tree.enableCheckBoxes(1);
                 tree.enableThreeStateCheckboxes(true);
@@ -526,7 +527,10 @@ var dhtmlxInit = new function(){
             tree.setSkin("dhx_skyblue");
             tree.setImagePath("res/plugin/dhtmlxTree/codebase/imgs/csh_vista/");
 
-            
+            if ( initData.enableDragAndDrop ){
+                tree.enableDragAndDrop(true);
+            }
+
             if ( initData.tree.json ){
                 tree.loadJSONObject(initData.tree.json);
             }
@@ -534,7 +538,7 @@ var dhtmlxInit = new function(){
             tree.num = treeName;
             tree.isClickOnFolder = false;
             //tree.treeId = 0;
-            
+
             tree.setOnClickHandler(initData.click || function(pTreeId){
                 this.treeId = pTreeId;
                 this.isClickOnFolder = true;
@@ -589,7 +593,7 @@ var dhtmlxInit = new function(){
             if ( initData.rmObj ){
                 $(initData.rmObj.id).attr('treeName', treeName).click(this.rmItem);
             } // if ( initData.rmObj )
-            
+
             // ======================= Добавление файла ================================
             if (initData.fileAdd){
                 var btnId = initData.fileAdd.id;
@@ -604,8 +608,9 @@ var dhtmlxInit = new function(){
                     $(btnId).attr('treeName', treeName).click(this.fileAdd);
                 }
             } // if (initData.fileAdd) 
-            
+
         } // for
+
     } // this.init = function 
 
 /*this.jsonAutoLoadSuccess = function(){
