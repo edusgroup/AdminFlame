@@ -656,6 +656,9 @@ window.isset = function (pObj, pProperties){
     if (pProperties.length===0){
         return false;
     }
+	if ( !pObj ){
+		return false;
+	}
     var buff = pObj[pProperties[0]];
     for (var i=0; i < pProperties.length; i++){
         if ( buff == undefined){
