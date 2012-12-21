@@ -324,7 +324,7 @@ var dhtmlxInit = new function(){
         var treeName = data['treeName'];
         var tree = dhtmlxInit.tree[treeName];
         var settings = dhtmlxInit.data[treeName];
-        if ( settings.autoLoad){
+        if ( settings && settings.autoLoad){
             // Если дети уже загруженны(в этом случае возвращается число)
             var hasChildren = tree.hasChildren(data['treeId']);
             if ( (typeof hasChildren == 'boolean') && (hasChildren)){
