@@ -324,7 +324,7 @@ var dhtmlxInit = new function(){
         var treeName = data['treeName'];
         var tree = dhtmlxInit.tree[treeName];
         var settings = dhtmlxInit.data[treeName];
-        if ( settings && settings.autoLoad){
+        if ( settings.autoLoad){
             // Если дети уже загруженны(в этом случае возвращается число)
             var hasChildren = tree.hasChildren(data['treeId']);
             if ( (typeof hasChildren == 'boolean') && (hasChildren)){
@@ -656,6 +656,9 @@ window.isset = function (pObj, pProperties){
     if (pProperties.length===0){
         return false;
     }
+	if ( !pObj ){
+		return false;
+	}
     var buff = pObj[pProperties[0]];
     for (var i=0; i < pProperties.length; i++){
         if ( buff == undefined){

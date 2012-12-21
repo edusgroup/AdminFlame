@@ -29,9 +29,10 @@ fileManager.select = function(){
     var $item = $(this).parents('div.item:first');
     var title = $item.attr('name');
     var type = $item.attr('type');
+    var preview = $item.attr('preview');
     var fileUrl = $item.attr('file');
     if (type == 'img'){
-        fileManager.selectItem = { 'name': title, 'file': fileUrl };
+        fileManager.selectItem = { 'name': title, 'file': fileUrl, preview: preview };
         
         var imgsize = $item.attr('imgsize');
         $('#imgSize').find('div.imgsize:first').html(imgsize);
@@ -41,7 +42,7 @@ fileManager.select = function(){
         
         $.fancybox( {href: '#imgSize', title: title} );
     }else{
-        fileManager.returnInEditor(fileManager.funcNameCallBack, fileUrl);
+        fileManager.returnInEditor(fileManager.funcNameCallBack, fileUrl, preview);
     }
 };
 
@@ -57,9 +58,8 @@ fileManager.checkClick = function(){
     }
 }
             
-fileManager.returnInEditor = function(pFuncNum, pUrl){
-    //window.top.opener['CKEDITOR'].tools.callFunction(pFuncNum, pUrl);
-    window.top.opener.fileManagerCallBack(pFuncNum, pUrl);
+fileManager.returnInEditor = function(pFuncNum, pUrl, pPreview){
+    window.top.opener.fileManagerCallBack(pFuncNum, pUrl, pPreview);
     window.top.close();
     window.top.opener.focus();
 }
@@ -128,7 +128,8 @@ fileManager.view = function(){
             $item.find(' .'+buttonName+':first').click(func);
         }
         
-        $item.find('.file:first').css("background-image", "url('"+itemUrlPreview+"')");  
+        $item.find('.file:first').css("background-image", "url('"+itemUrlPreview+"')");
+        $item.attr('preview', itemUrlPreview);
         $item.attr('name', itemName);  
         $item.attr('type', pConf.type); 
                     
