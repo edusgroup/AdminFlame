@@ -59,7 +59,13 @@ fileManager.checkClick = function(){
 }
             
 fileManager.returnInEditor = function(pFuncNum, pUrl, pPreview){
-    window.top.opener.fileManagerCallBack(pFuncNum, pUrl, pPreview);
+	if ( window.funcNameCallBack ){
+		window.funcNameCallBack(pFuncNum, pUrl, pPreview);
+	}else{
+		// For CKEdit
+		window.top.opener.fileManagerCallBack(pFuncNum, pUrl, pPreview);	
+	}
+	
     window.top.close();
     window.top.opener.focus();
 }
