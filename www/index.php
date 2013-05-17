@@ -8,28 +8,35 @@ use core\classes\request;
 use core\classes\DB\DB as DBCore;
 
 // Грузим конфиги админки
-define('DIR_CONF', './../FlameCore/engine/admin/');
+define('DIR_CONF', '/opt/www/FlameCore/engine/admin/');
+include('../conf/DB.php');
 
 include(DIR_CONF . 'conf/DIR.php');
 include(DIR_CONF . 'conf/SITE.php');
 include(DIR_CONF . 'conf/CONSTANT.php');
 
-define('SITE_CORE', './../SiteCoreFlame/');
+define('SITE_CORE', '/opt/www/SiteCoreFlame/');
 
-// Получаем типо контроллера
-$initType = isset($_GET['$t']) ? trim($_GET['$t']) : '';
-$contrName = isset($_GET['$c']) ? trim($_GET['$c']) : '';
+// Получаем тип контроллера
+$initType = isset($_GET['$t']) ? trim($_GET['$t']) : 'manager';
+$contrName = isset($_GET['$c']) ? trim($_GET['$c']) : 'site';
 
 $siteName = isset($_COOKIE['siteName']) ? $_COOKIE['siteName'] : null;
 if ( !$siteName ){
     $siteName = isset($_GET['siteName']) ? trim($_GET['siteName']) : null;
 }
+/*
 $isDirNotExist = !$siteName || !is_dir(SITE_CORE.$siteName);
 $isContr = !(in_array($contrName, ['site','auth']) && ($initType == 'manager'));
 if ($isDirNotExist && $isContr){
     header('Location: /?$t=manager&$c=site');
     exit;
-} // if
+} // if*/
+
+$isChooseSite = (in_array($contrName, ['site','auth']) && ($initType == 'manager'));
+if ($isChooseSite){
+    $siteName = null;
+}
 
 umask(0002);
 
@@ -46,14 +53,17 @@ include DIR::CORE . 'core/function/errorHandler.php';
 // Подгрузка драйвера БД
 include DIR::CORE . 'core/classes/DB/adapter/' . CONF::DB_ADAPTER . '/adapter.php';
 
+
 if ( $siteName ){
     DBCore::addParam('site', \site\conf\DB::$conf);
 }
+DBCore::addParam('admin', \ADMIN_DB::$conf);
+DBCore::addParam('files', \ADMIN_DB::$files);
 
 // Формируем имя класса для типа контроллера
 $initClassName = 'admin\library\init\\' . $initType;
 // Существует ли наш типо контроллера, автоматическая автоподрузка
-if (!class_exists($initClassName)) {
+if (!@class_exists($initClassName)) {
     header('Content-Type: text/html; charset=UTF-8');
     echo "Page 404<br/>\nBad parametr initType";
     exit;
